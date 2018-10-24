@@ -7,6 +7,7 @@ import sys
 import argparse
 from CORE.encrypt_decrypt import AESCipher
 from CORE.input_output import input_io, output_io
+from CORE.check_db import Check_database
 
 def main():
     parser = argparse.ArgumentParser()
@@ -51,7 +52,12 @@ def calc(args):
             for i in db_name:
                 db_info += output_io(i, False)
 
-        return db_info
+        if db_info:
+            for i in db_info:
+                a = Check_database(i['db_name'], i['ip'], i['username'], i['password'], i['instance_name'], i['port'])
+                file_name = a.check()
+
+            return "The result file is {}, please check!".format(file_name)
 
 if __name__ == '__main__':
     main()

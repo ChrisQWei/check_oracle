@@ -1,0 +1,30 @@
+SELECT
+	RESOURCE_NAME,
+	LIMIT_VALUE LIMIT,
+	MAX_UTILIZATION MAX,
+	current_utilization CUR,
+	round(max_utilization/limit_value,2)*100  m_u_r,
+	round(current_utilization/limit_value,2)*100 c_u_r
+FROM
+	V$RESOURCE_LIMIT
+where
+	resource_name in ('processes','sessions');
+select TABLESPACE_NAME,
+	AUTOEXTENSIBLE,
+	round(sum(MAXBYTES/1024/1024),0) MAX,
+	round(sum(USER_BYTES/1024/1024),0) USED,
+	round(sum(MAXBYTES/1024/1024)-sum(USER_BYTES/1024/1024),0)  FREE,
+	round(sum(USER_BYTES/1024/1024)/sum(MAXBYTES/1024/1024),2)*100 USED_RATE
+from dba_data_files
+where AUTOEXTENSIBLE != 'NO'
+group by tablespace_name,AUTOEXTENSIBLE
+union all
+select TABLESPACE_NAME,
+	AUTOEXTENSIBLE,
+	round(sum(MAXBYTES/1024/1024),0) MAX,
+	round(sum(USER_BYTES/1024/1024),0) USED,
+	round(sum(MAXBYTES/1024/1024)-sum(USER_BYTES/1024/1024),0)  FREE,
+	round(sum(USER_BYTES/1024/1024)/sum(MAXBYTES/1024/1024),2)*100 USED_RATE
+ from DBA_TEMP_FILES
+ where AUTOEXTENSIBLE != 'NO'
+ group by tablespace_name,AUTOEXTENSIBLE;

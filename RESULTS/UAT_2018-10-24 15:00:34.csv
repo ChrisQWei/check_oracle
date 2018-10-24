@@ -1,0 +1,3 @@
+RESOURCE_NAME	LIMIT	MAX	CUR	M_U_R	C_U_R
+processes	      3000	1481	95	49	3
+sessions	      4528	1490	104	33	2

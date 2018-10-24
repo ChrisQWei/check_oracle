@@ -1,4 +1,1 @@
-{'db_name': 'test', 'ip': '1.1', 'username': 'ss', 'password': 'ss', 'instance_name': 'dd', 'port': '123'}
-{'db_name': 'test1', 'ip': '1.1', 'username': 'ss', 'password': 'ss', 'instance_name': 'dd', 'port': '123'}
-{'db_name': 'test2', 'ip': '1.1', 'username': 'ss', 'password': 'ss', 'instance_name': 'dd', 'port': '123'}
 {'db_name': 'test5', 'ip': '1.1.1.1', 'username': 'chris', 'password': b'WxqFwS+Gt2AicJXalF8Wi6syL2jLM170slcEwhtCj4s=', 'instance_name': 'orcl', 'port': '1521'}
